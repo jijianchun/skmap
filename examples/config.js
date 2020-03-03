@@ -175,7 +175,7 @@ var exampleConfig = {
                 name_en: "online base map",
                 content: [
                     {
-                        name: "本地图片",
+                        name: "本地图片-ok",
                         name_en: "SingleTileImageryProvider",
                         thumbnail: "SingleTileImageryProvider.jpg",
                         fileName: "image"
