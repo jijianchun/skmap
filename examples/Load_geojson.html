@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>地形影像</title>
+    <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="./css/pretty.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/mapconfig.js"></script>
+    <script src="./js/cesium/Cesium.js"></script>
+    <script src="./js/KMap3D.js"></script>
+	<script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+    <script src="./js/config.js"></script>
+</head>
+<body>
+<div id="cesiumContainer"></div>
+<div id='loadingbar' class="spinner">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+    
+<script>
+function onload(Cesium) {
+
+    // 实例化kmap
+    let kmap = new KMap3D('cesiumContainer');
+
+    // 加载geojson
+    getGeoJson();
+
+    function getGeoJson() {
+        let viewSide = kmap.getCurrentExtent();
+        const defaulltPolygon = [
+            [87.1876567213, 48.8069779755],
+            [73.1939790099, 39.7672888339],
+            [92.2856252852, 27.7751314726],
+            [98.2827097940, 28.6904284710],
+            [101.1914021448, 21.7130800399],
+            [105.1171965450, 23.4027764595],
+            [112.3242187500, 3.8642546157],
+            [122.1679687500, 23.3624285934],
+            [124.1566167965, 39.8550148747],
+            [135.0384521484, 48.4073260797],
+            [121.2890625000, 53.0147832459],
+            [105.9960661807, 41.5743399724],
+            [87.1876567213, 48.8069779755]
+
+        ];
+        let polygon = viewSide ? [[viewSide.xmin, viewSide.ymin], [viewSide.xmin, viewSide.ymax], [viewSide.xmax, viewSide.ymax], [viewSide.xmax, viewSide.ymin], [viewSide.xmin, viewSide.ymin]] : defaulltPolygon;
+        let geojsonUrl = MapConfig.CTserverConfig.CT_SERVER_URL+'/search-server/gisdata/service/query/geometry';
+        let body = {
+            appName: 'kircp_name',
+            serviceNames: ['dwxx_js'],
+            location: {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [119.98004268205037,31.116493906935148],[119.98004268205037,31.697670135300463],[121.30327965317589,31.697670135300463],[121.30327965317589,31.116493906935148],[119.98004268205037,31.116493906935148]
+                        ]
+                    ]
+                ]
+            },
+            pageSize: 1000,
+            pageNo: 0,
+        };
+        $.ajax(geojsonUrl, {
+            method: 'post',
+            contentType: 'application/json;chartset=utf-8',
+            headers: {
+                'Authorization': 'KEDACOM123'
+            },
+            data: JSON.stringify(body),
+            success: function(res) {
+                kmap.loadGeojsonData({
+                    geojsons: res.result.data, vEvent: (c) => {
+                        if (c) {
+                            console.log('c', c);
+                        }
+                    }, wheelEvent: () => {
+                        console.log('wheelEvent');
+                    }
+                })
+            }
+        });
+    }
+
+    $('#loadingbar').remove();
+}
+</script>
+</body>
+</html>

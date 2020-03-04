@@ -1,0 +1,32 @@
+<svg width="113" height="130" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <path id="path-1" d="m40.128,98.15357c-23.31176,-20.46446 -36.26777,-36.18085 -38.86803,-47.14917c-0.83998,-3.54316 -1.25997,-7.12046 -1.25997,-10.7319c0,-22.24189 17.96592,-40.2725 40.128,-40.2725c22.16208,0 40.128,18.03061 40.128,40.2725c0,3.61144 -0.41999,7.18874 -1.25997,10.7319c-2.60026,10.96832 -15.55627,26.68471 -38.86803,47.14917zm0,-23.47151c18.66281,0 33.792,-15.28516 33.792,-34.14037c0,-18.85521 -15.12919,-34.14037 -33.792,-34.14037c-18.66281,0 -33.792,15.28516 -33.792,34.14037c0,18.85521 15.12919,34.14037 33.792,34.14037z"/>
+  <filter id="filter-2" filterUnits="objectBoundingBox" height="152.0%" width="163.5%" y="-26.0%" x="-31.8%">
+   <feGaussianBlur stdDeviation="8.5"/>
+  </filter>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="Page-1">
+   <g id="erf">
+    <g id="dsfa">
+     <g id="czxas">
+      <g id="fesd">
+       <g id="cdf">
+        <use id="svg_1" x="18" y="15" xlink:href="#path-1" filter="url(#filter-2)" fill="black"/>
+        <use id="svg_2" x="18" y="15" xlink:href="#path-1" fill-rule="evenodd" fill="#BA9C63"/>
+       </g>
+       <ellipse ry="34.140371" rx="33.792" cy="55.541691" cx="58.128" opacity="0.8" fill="#060606" id="cvfgh"/>
+      </g>
+      <text x="18" y="15" font-weight="400" font-size="33.792" font-family="PingFangSC-Medium, PingFang SC" id="4"/>
+     </g>
+    </g>
+   </g>
+   <text stroke="#000" transform="matrix(1.1326845283783968,0,0,1.459030010356873,-26.16444140029997,-10.980102377563103) " xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="55.109375" x="53" stroke-width="0" fill="#ffffff">${i}</text>
+  </g>
+ </g>
+</svg>

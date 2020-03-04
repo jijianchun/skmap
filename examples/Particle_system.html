@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>火焰</title>
+    <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="./css/pretty.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/mapconfig.js"></script>
+    <script src="./js/cesium/Cesium.js"></script>
+    <script src="./js/KMap3D.js"></script>
+    <script src="./js/Sandcastle-header.js"></script>
+    <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+</head>
+<body class="sandcastle-loading" data-sandcastle-bucket="bucket-requirejs.html">
+<div id="cesiumContainer" class="fullSize"></div>
+<div id='loadingbar' class="spinner">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+
+<script>
+    function onload() {
+
+        // 实例化kmap
+        let kmap = new KMap3D('cesiumContainer');
+
+        // 添加火焰效果
+        kmap.addFireSystem();
+
+        // 设置视图
+        // let viewer = kmap.map.kmapViewer;
+        // viewer.zoomTo(viewer.entities);
+        // viewer.camera.setView({
+        //     destination: Cesium.Cartesian3.fromDegrees(120.410693, 31.5994841, 10000),
+        //     orientation: {
+        //         heading: Cesium.Math.toRadians(0),
+        //         pitch: Cesium.Math.toRadians(-40),
+        //         roll: Cesium.Math.toRadians(0)
+        //     }
+        // });
+        // console.log('kmap.map', kmap.map.kmapViewer);
+
+        $('#loadingbar').remove();
+    }
+</script>
+</body>
+</html>

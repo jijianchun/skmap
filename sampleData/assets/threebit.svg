@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="ewe" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 60 73" style="enable-background:new 0 0 60 73;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#BA9C63;}
+	.st1{opacity:0.8;fill:#060606;enable-background:new    ;}
+	.st2{fill:#FFFFFF;}
+	.st3{font-family:'PingFangSC-Medium-GBpc-EUC-H';}
+	.st4{font-size:18px;}
+</style>
+<path id="dafe" class="st0" d="M30,73C12.6,57.8,2.9,46.1,0.9,37.9C0.3,35.3,0,32.6,0,30C0,13.4,13.4,0,30,0s30,13.4,30,30
+	c0,2.7-0.3,5.3-0.9,8C57.1,46.1,47.4,57.8,30,73z M30,55.5c14,0,25.3-11.4,25.3-25.4S44,4.8,30,4.8S4.7,16.1,4.7,30.2
+	S16,55.5,30,55.5z"/>
+<ellipse id="dfafs" class="st1" cx="30" cy="30.2" rx="25.3" ry="25.4"/>
+<text transform="matrix(1 0 0 1 13.8001 35.8043)" class="st2 st3 st4">434</text>
+</svg>

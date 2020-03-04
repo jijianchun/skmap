@@ -52,86 +52,93 @@ var exampleConfig = {
                 ]
             },
             "S3M": {
-                name: "三维切片缓存(S3M)",
+                name: "三维切片缓存",
                 name_en: "S3M",
                 content: [
                     {
-                        name: "倾斜模型",
+                        name: "倾斜模型-ok",
                         name_en: "S3MTiles_suofeiya",
-                        thumbnail: "S3MTiles_suofeiya.jpg",
+                        thumbnail: "jingye.jpg",
                         fileName: "S3MTiles_suofeiya"
                     },
+                    // {
+                    //     name: "萨尔茨堡（水面特效）",
+                    //     name_en: "S3MTiles_srsb_water",
+                    //     thumbnail: "S3MTiles_srsb_water.jpg",
+                    //     fileName: "S3MTiles_srsb_water"
+                    // },
+                    // {
+                    //     name: "鸟巢（水面特效）",
+                    //     name_en: "S3MTiles_niaochao_water",
+                    //     thumbnail: "S3MTiles_niaochao_water.jpg",
+                    //     fileName: "S3MTiles_niaochao_water"
+                    // },
+                    // {
+                    //     name: "CBD",
+                    //     name_en: "S3MTiles_jingmo",
+                    //     thumbnail: "S3MTiles_jingmo.jpg",
+                    //     fileName: "S3MTiles_jingmo"
+                    // },
+                    // {
+                    //     name: "BIM",
+                    //     name_en: "S3MTiles_BIM",
+                    //     thumbnail: "S3MTiles_BIM.jpg",
+                    //     fileName: "S3MTiles_BIM"
+                    // },
+                    // {
+                    //     name: "矢量",
+                    //     name_en: "S3MTiles_vector",
+                    //     thumbnail: "S3MTiles_vector.jpg",
+                    //     fileName: "S3MTiles_vector"
+                    // }, 
                     {
-                        name: "萨尔茨堡（水面特效）",
-                        name_en: "S3MTiles_srsb_water",
-                        thumbnail: "S3MTiles_srsb_water.jpg",
-                        fileName: "S3MTiles_srsb_water"
-                    },
-                    {
-                        name: "鸟巢（水面特效）",
-                        name_en: "S3MTiles_niaochao_water",
-                        thumbnail: "S3MTiles_niaochao_water.jpg",
-                        fileName: "S3MTiles_niaochao_water"
-                    },
-                    {
-                        name: "CBD",
-                        name_en: "S3MTiles_jingmo",
-                        thumbnail: "S3MTiles_jingmo.jpg",
-                        fileName: "S3MTiles_jingmo"
-                    },
-                    {
-                        name: "BIM",
-                        name_en: "S3MTiles_BIM",
-                        thumbnail: "S3MTiles_BIM.jpg",
-                        fileName: "S3MTiles_BIM"
-                    },
-                    {
-                        name: "矢量",
-                        name_en: "S3MTiles_vector",
-                        thumbnail: "S3MTiles_vector.jpg",
-                        fileName: "S3MTiles_vector"
-                    }, {
                         name: "点云",
                         name_en: "S3MTiles_pointCloud",
                         thumbnail: "S3MTiles_pointCloud.jpg",
                         fileName: "S3MTiles_pointCloud"
                     },
                     {
-                        name: "地下管线",
-                        name_en: "showUnderGround",
-                        thumbnail: "showUnderGround.jpg",
-                        fileName: "showUnderGround"
-                    },
-                    {
-                        name: "体渲染",
-                        name_en: "S3M_Volume",
-                        thumbnail: "S3M_Volume.jpg",
-                        fileName: "S3M_Volume"
-                    },
-                    {
-                        name: "体数据临近采样",
-                        name_en: "nearestFilterMode",
-                        thumbnail: "nearestFilterMode.jpg",
-                        fileName: "nearestFilterMode"
-                    },
-					{
-                        name: "透明渲染",
-                        name_en: "transparentRendering",
-                        thumbnail: "transparentRendering.jpg",
-                        fileName: "transparentRendering"
-                    },
-                    {
-                        name: "柱状图",
-                        name_en: "S3MTiles_histogram",
-                        thumbnail: "S3MTiles_histogram.jpg",
-                        fileName: "S3MTiles_histogram"
-                    },
-                    {
-                        name: "选中偏移",
-                        name_en: "offset",
-                        thumbnail: "offset.jpg",
-                        fileName: "offset"
+                        name: "城市白模-ok",
+                        name_en: "city_model",
+                        thumbnail: "city_model.jpg",
+                        fileName: "City_model"
                     }
+                    // {
+                    //     name: "地下管线",
+                    //     name_en: "showUnderGround",
+                    //     thumbnail: "showUnderGround.jpg",
+                    //     fileName: "showUnderGround"
+                    // },
+                    // {
+                    //     name: "体渲染",
+                    //     name_en: "S3M_Volume",
+                    //     thumbnail: "S3M_Volume.jpg",
+                    //     fileName: "S3M_Volume"
+                    // },
+                    // {
+                    //     name: "体数据临近采样",
+                    //     name_en: "nearestFilterMode",
+                    //     thumbnail: "nearestFilterMode.jpg",
+                    //     fileName: "nearestFilterMode"
+                    // },
+					// {
+                    //     name: "透明渲染",
+                    //     name_en: "transparentRendering",
+                    //     thumbnail: "transparentRendering.jpg",
+                    //     fileName: "transparentRendering"
+                    // },
+                    // {
+                    //     name: "柱状图",
+                    //     name_en: "S3MTiles_histogram",
+                    //     thumbnail: "S3MTiles_histogram.jpg",
+                    //     fileName: "S3MTiles_histogram"
+                    // },
+                    // {
+                    //     name: "选中偏移",
+                    //     name_en: "offset",
+                    //     thumbnail: "offset.jpg",
+                    //     fileName: "offset"
+                    // }
                 ]
             },
             "dynamic-layer": {
@@ -180,12 +187,12 @@ var exampleConfig = {
                         thumbnail: "SingleTileImageryProvider.jpg",
                         fileName: "image"
                     },
-                    {
-                        name: "天地图",
-                        name_en: "tianditu",
-                        thumbnail: "tianditu.jpg",
-                        fileName: "tianditu"
-                    },
+                    // {
+                    //     name: "天地图",
+                    //     name_en: "tianditu",
+                    //     thumbnail: "tianditu.jpg",
+                    //     fileName: "tianditu"
+                    // },
                     {
                         name: "BingMap",
                         name_en: "BingMap",
@@ -367,6 +374,18 @@ var exampleConfig = {
                         name_en: "location",
                         thumbnail: "location.jpg",
                         fileName: "location"
+                    },
+                    {
+                        name: "加载geojson-ok",
+                        name_en: "load_geojson",
+                        thumbnail: "location.jpg",
+                        fileName: "Load_geojson"
+                    },
+                    {
+                        name: "历史轨迹-ok",
+                        name_en: "history_track",
+                        thumbnail: "location.jpg",
+                        fileName: "History_track"
                     }
                 ]
             },
@@ -644,6 +663,12 @@ var exampleConfig = {
                         name_en: "KML_edit",
                         thumbnail: "KML_edit.jpg",
                         fileName: "KML_edit"
+                    },
+                    {
+                        name: "高精度路口-ok",
+                        name_en: "High_precison",
+                        thumbnail: "KML_edit.jpg",
+                        fileName: "High_precision"
                     }
                 ]
             },
@@ -842,6 +867,12 @@ var exampleConfig = {
                         name_en: "ThematicMap",
                         thumbnail: "ThematicMap.jpg",
                         fileName: "ThematicMap"
+                    },
+                    {
+                        name: "圆圈波纹-ok",
+                        name_en: "CircleRipple",
+                        thumbnail: "ThematicMap.jpg",
+                        fileName: "CircleRipple"
                     }
                 ]
             },
@@ -850,10 +881,10 @@ var exampleConfig = {
                 name_en: "particle",
                 content: [
                     {
-                        name: "火焰",
+                        name: "火焰-ok",
                         name_en: "flame",
                         thumbnail: "flame.jpg",
-                        fileName: "Particle System"
+                        fileName: "Particle_system"
                     },
                     {
                         name: "鸟巢火炬",

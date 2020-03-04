@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>地形影像</title>
+    <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="./css/pretty.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/mapconfig.js"></script>
+    <script src="./js/cesium/Cesium.js"></script>
+    <script src="./js/KMap3D.js"></script>
+	<script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+    <script src="./js/config.js"></script>
+</head>
+<body>
+<div id="cesiumContainer"></div>
+<div id='loadingbar' class="spinner">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+    
+<script>
+function onload(Cesium) {
+
+    // 实例化kmap
+    let kmap = new KMap3D('cesiumContainer');
+    let viewer = kmap.map.kmapViewer;
+
+    let data = {
+        id: 'circle-ripple',
+        lon: 117.286419,
+        lat: 31.864436,
+        height: 500,
+        minR: 0,
+        maxR: 3000,
+        deviationR: 10, // 增长的幅度
+        eachInterval: 2000 // 圆的时间间隔
+    }
+    addRipple(viewer, data);
+
+    function addRipple(view, data) {
+        function addCircleRipple(viewer, data){
+            var r1 = data.minR; // 第一个扩散圆的最小半径
+            var r2 = data.minR; // 第二个扩散圆的最小半径
+
+            function changeR1() {
+                r1 = r1 + data.deviationR;
+                if(r1 >= data.maxR){
+                    r1 = data.minR;
+                }
+                return r1;
+            }
+            function changeR2() {
+                r2 = r2 + data.deviationR;
+                if(r2 >= data.maxR){
+                    r2 = data.minR;
+                }
+                return r2;
+            }
+
+            viewer.entities.add({
+                id: data.id,
+                name: "test",
+                position: Cesium.Cartesian3.fromDegrees(data.lon, data.lat, data.height),
+                ellipse: {
+                    semiMinorAxis: new Cesium.CallbackProperty(changeR1, false),
+                    semiMajorAxis: new Cesium.CallbackProperty(changeR1, false),
+                    height: data.height,
+                    material: new Cesium.ImageMaterialProperty({
+                        image: data.imageUrl,
+                        repeat: new Cesium.Cartesian2(1.0, 1.0),
+                        transparent: true,
+                        color: new Cesium.CallbackProperty(function () {
+                            var alp = 1-r1/data.maxR;
+                            return Cesium.Color.WHITE.withAlpha(alp)  //entity的颜色透明 并不影响材质，并且 entity也会透明哦
+                        }, false)
+                    })
+                }
+            });
+
+            // 添加第二个圆
+            setTimeout(function () {
+                viewer.entities.add({
+                    name: "",
+                    position: Cesium.Cartesian3.fromDegrees(data.lon, data.lat, data.height),
+                    ellipse: {
+                        semiMinorAxis: new Cesium.CallbackProperty(changeR2,false),
+                        semiMajorAxis: new Cesium.CallbackProperty(changeR2,false),
+                        height: data.height,
+                        material: new Cesium.ImageMaterialProperty({
+                            image: data.imageUrl,
+                            repeat: new Cesium.Cartesian2(1.0, 1.0),
+                            transparent: true,
+                            color: new Cesium.CallbackProperty(function () {
+                                var alp = 1;
+                                alp = 1-r2/data.maxR;
+                                return Cesium.Color.WHITE.withAlpha(alp)
+                            }, false)
+                        })
+                    }
+                });
+            }, data.eachInterval)
+        }
+
+        addCircleRipple(viewer, {
+            id: data.id,
+            lon: data.lon,
+            lat: data.lat,
+            height: data.height,
+            maxR: data.maxR,
+            minR: data.minR,
+            deviationR: data.deviationR,
+            eachInterval: data.eachInterval,
+            imageUrl: "./img/circle.png"
+        });
+
+        //如果添加中心线的话：
+        viewer.entities.add({
+            name: "",
+            polyline: {
+                positions: Cesium.Cartesian3.fromDegreesArrayHeights([
+                    data.lon, data.lat, 0,
+                    data.lon, data.lat, 5000
+                ]),
+                width: 4,
+                material : new Cesium.PolylineGlowMaterialProperty({ //发光线
+                    glowPower : 0.1,
+                    color : Cesium.Color.RED
+                })
+            }
+        });
+        viewer.zoomTo(viewer.entities);
+    }
+
+    $('#loadingbar').remove();
+}
+</script>
+</body>
+</html>

@@ -51,6 +51,7 @@
 
 <script>
 	function onload(Cesium) {
+        console.log('Cesium', Cesium);
         //初始化viewer部件
 		var viewer = new Cesium.Viewer('cesiumContainer');
         viewer.imageryLayers.addImageryProvider(new Cesium.TiandituImageryProvider({
