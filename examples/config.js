@@ -871,7 +871,7 @@ var exampleConfig = {
                     {
                         name: "圆圈波纹-ok",
                         name_en: "CircleRipple",
-                        thumbnail: "ThematicMap.jpg",
+                        thumbnail: "circle_ripple.jpg",
                         fileName: "CircleRipple"
                     }
                 ]
