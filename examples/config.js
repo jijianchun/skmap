@@ -340,7 +340,7 @@ var exampleConfig = {
                 name_en: "position information",
                 content: [
                     {
-                        name: "拾取位置",
+                        name: "拾取位置-ok",
                         name_en: "pickPosition",
                         thumbnail: "pickPosition.jpg",
                         fileName: "pickPosition"
@@ -911,10 +911,10 @@ var exampleConfig = {
                         fileName: "Particle System_fountain"
                     },
                     {
-                        name: "雨水",
+                        name: "雨水-ok",
                         name_en: "Particle System_rain",
                         thumbnail: "Particle System_rain.jpg",
-                        fileName: "Particle System_rain"
+                        fileName: "Particle_system_rain"
                     }
                 ]
             },

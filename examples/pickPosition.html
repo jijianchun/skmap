@@ -15,6 +15,9 @@
     </style>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/config.js"></script>
+    <script src="./js/mapconfig.js"></script>
+    <script src="./js/cesium/Cesium.js"></script>
+    <script src="./js/KMap3D.js"></script>
     <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
 </head>
 <body>
@@ -40,86 +43,60 @@
     </div>
 </div>
 <script type="text/javascript">
-function onload(Cesium) {
-    var viewer = new Cesium.Viewer('cesiumContainer');
-    viewer.imageryLayers.addImageryProvider(new Cesium.BingMapsImageryProvider({
-        url : 'https://dev.virtualearth.net',
-        mapStyle : Cesium.BingMapsStyle.AERIAL,
-        key : URL_CONFIG.BING_MAP_KEY
-    }));
-    var scene = viewer.scene;
-    var widget = viewer.cesiumWidget;
-    try {
-        //打开所发布三维服务下的所有图层
-        var promise = scene.open(URL_CONFIG.SCENE_CBD);
-        Cesium.when(promise,function(layers){
-            //设置相机位置、视角，便于观察场景
-            scene.camera.setView({
-                destination : new Cesium.Cartesian3.fromDegrees(116.4563,39.8969,553),
-                orientation : {
-                    heading : 5.901089214916513,
-                    pitch : -0.40668579780875524,
-                    roll : 6.281842456812987
-                }
-            });
-            for(var i = 0; i<layers.length;i++){
-                layers[i].selectEnabled = false;
-            }
-           
-            if(!scene.pickPositionSupported){
-                alert('不支持深度纹理,无法拾取位置！');
-            }
-        },function(e){
-            if (widget._showRenderLoopErrors) {
-                var title = '加载SCP失败，请检查网络连接状态或者url地址是否正确？';
-                widget.showErrorPanel(title, undefined, e);
-            }
-        });
-    }
-    catch(e){
-        if (widget._showRenderLoopErrors) {
-            var title = '渲染时发生错误，已停止渲染。';
-            widget.showErrorPanel(title, undefined, e);
-        }
-    }
-    var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+function onload() {
+    
+    // 实例化kmap
+    let kmap = new KMap3D('cesiumContainer');
+    let viewer = kmap.map.kmapViewer;
+    let scene = viewer.scene;
+    let widget = viewer.cesiumWidget;
 
-    //设置鼠标左键单击回调事件
+    kmap.buildCityFeatureLayer();
+
+    // 设置鼠标左键单击回调事件
+    let handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
     handler.setInputAction(function(e) {
-        //首先移除之前添加的点
+        // 移除之前添加的点
         viewer.entities.removeAll();
-        //获取点击位置笛卡尔坐标
-        var position = scene.pickPosition(e.position);
-
-        //将笛卡尔坐标转化为经纬度坐标
-        var cartographic = Cesium.Cartographic.fromCartesian(position);
-        var longitude = Cesium.Math.toDegrees(cartographic.longitude);
-        var latitude = Cesium.Math.toDegrees(cartographic.latitude);
-        var height = cartographic.height;
-        if(height < 0) {
-            height = 0;
+        // 获取点击位置的笛卡尔坐标
+        let position = scene.pickPosition(e.position);
+        if (position) {
+            // 将笛卡尔坐标转换为经纬度坐标
+            let cartographic = Cesium.Cartographic.fromCartesian(position);
+            let longitude = Cesium.Math.toDegrees(cartographic.longitude);
+            let latitude = Cesium.Math.toDegrees(cartographic.latitude);
+            let height = cartographic.height;
+            if (height < 0) {
+                height = 0;
+            }
+            console.log('鼠标点击位置信息：', longitude, latitude, height);
+            // 在点击位置添加对应点
+            viewer.entities.add(new Cesium.Entity({
+                point: new Cesium.PointGraphics({
+                    color: new Cesium.Color(1, 1, 0),
+                    pixelSize: 10,
+                    outlineColor: new Cesium.Color(0, 1, 1)
+                }),
+                position: Cesium.Cartesian3.fromDegrees(longitude, latitude, height + 0.5)
+            }));
+        } else {
+            console.log('位置拾取错误');
         }
 
-        //创建弹出框信息
-        var entity = new Cesium.Entity({
-            name : "位置信息",
-            description : createDescription(Cesium, [longitude, latitude, height])
-        });
-        viewer.selectedEntity = entity;
+        // 创建弹出框信息
+        // let entity = new Cesium.Entity({
+        //     name: '位置信息',
+        //     description: createDescription(Cesium, [longitude, latitude, height]),
+        //     position: Cesium.Cartesian3.fromDegrees(longitude, latitude, height + 2.5)
+        // });
+        // viewer.entities.add(entity);
+        // viewer.selectedEntity = entity;
 
-        //在点击位置添加对应点
-        viewer.entities.add(new Cesium.Entity({
-            point : new Cesium.PointGraphics({
-                color : new Cesium.Color(1, 1, 0),
-                pixelSize : 10,
-                outlineColor : new Cesium.Color(0, 1, 1)
-            }),
-            position : Cesium.Cartesian3.fromDegrees(longitude, latitude , height + 0.5)
-        }));
+
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-    //创建描述位置的对话框
-    function createDescription(Cesium,properties){
+    // 创建描述位置的对话框
+    function createDescription(Cesium, properties) {
         var simpleStyleIdentifiers = ['经度','纬度','高度'];
         var html = '';
         for ( var key in properties) {
@@ -138,6 +115,7 @@ function onload(Cesium) {
         }
         return html;
     }
+
     $('#loadingbar').remove();
 }
 </script>
