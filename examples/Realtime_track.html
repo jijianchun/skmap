@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>BingMap影像</title>
+    <title>地形影像</title>
     <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
     <link href="./css/pretty.css" rel="stylesheet">
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/config.js"></script>
     <script src="./js/mapconfig.js"></script>
     <script src="./js/cesium/Cesium.js"></script>
     <script src="./js/KMap3D.js"></script>
-    <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+	<script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+    <script src="./js/config.js"></script>
 </head>
 <body>
 <div id="cesiumContainer"></div>
@@ -36,21 +36,21 @@
         <div class="circle4"></div>
     </div>
 </div>
+    
 <script>
-    function onload() {
+function onload(Cesium) {
 
-        // 初始化kmap
-        let kmap = new KMap3D('cesiumContainer');
-        let viewer = kmap.map.kmapViewer;
+    // 实例化kmap
+    let kmap = new KMap3D('cesiumContainer');
 
-        // 添加bingmap的provider
-        viewer.imageryLayers.addImageryProvider(new Cesium.BingMapsImageryProvider({
-            key: URL_CONFIG.BING_MAP_KEY,
-            url: URL_CONFIG.BINGMAP
-        }));
+    kmap.initRealtimetrack({
+        completed: function(isSuccess) {
+            console.log('isSucess', isSuccess);
+        }
+    })
 
-        $('#loadingbar').remove();
-    }
+    $('#loadingbar').remove();
+}
 </script>
 </body>
 </html>

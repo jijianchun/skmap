@@ -194,7 +194,7 @@ var exampleConfig = {
                     //     fileName: "tianditu"
                     // },
                     {
-                        name: "BingMap",
+                        name: "BingMap-ok",
                         name_en: "BingMap",
                         thumbnail: "bingMap.jpg",
                         fileName: "bingMap"
@@ -378,14 +378,26 @@ var exampleConfig = {
                     {
                         name: "加载geojson-ok",
                         name_en: "load_geojson",
-                        thumbnail: "location.jpg",
+                        thumbnail: "load_geojson.jpg",
                         fileName: "Load_geojson"
                     },
                     {
                         name: "历史轨迹-ok",
                         name_en: "history_track",
-                        thumbnail: "location.jpg",
+                        thumbnail: "history_track.jpg",
                         fileName: "History_track"
+                    },
+                    {
+                        name: "实时轨迹-ok",
+                        name_en: "realtime_track",
+                        thumbnail: "realtime_track.jpg",
+                        fileName: "Realtime_track"
+                    },
+                    {
+                        name: "对象追踪-ok",
+                        name_en: "object_track",
+                        thumbnail: "object_track.jpg",
+                        fileName: "Object_track"
                     }
                 ]
             },
