@@ -8,6 +8,9 @@
     <link href="../Build/Cesium/Widgets/widgets.css" rel="stylesheet">
     <link href="./css/pretty.css" rel="stylesheet">
     <script src="./js/jquery.min.js"></script>
+    <script src="./js/mapconfig.js"></script>
+    <script src="./js/cesium/Cesium.js"></script>
+    <script src="./js/KMap3D.js"></script>
     <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
 </head>
 <body>
@@ -33,13 +36,19 @@
     </div>
 </div>
 <script>
-    function onload(Cesium) {
-        var viewer = new Cesium.Viewer('cesiumContainer');
+    function onload() {
+
+        // 实例化kmap
+        let kmap = new KMap3D('cesiumContainer');
+        let viewer = kmap.map.kmapViewer;
+
         //使用本地的一张图片初始化地球，建议图片长宽比2:1
         viewer.imageryLayers.addImageryProvider(new Cesium.SingleTileImageryProvider({
             url : './images/worldimage.jpg'
         }));
+
         $('#loadingbar').remove();
+
     }
 </script>
 </body>
