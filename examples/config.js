@@ -199,6 +199,12 @@ var exampleConfig = {
                         thumbnail: "bingMap.jpg",
                         fileName: "bingMap"
                     },
+                    {
+                        name: "GaodeMap",
+                        name_en: "GaodeMap",
+                        thumbnail: "bingMap.jpg",
+                        fileName: "gaodeMap"
+                    },
                     // {
                     //     name: "STK地形",
                     //     name_en: "STKterrain",
@@ -677,7 +683,7 @@ var exampleConfig = {
                     //     fileName: "KML_edit"
                     // },
                     {
-                        name: "高精度路口",
+                        name: "高精度路口-gltf",
                         name_en: "High_precison",
                         thumbnail: "high_precision.jpg",
                         fileName: "High_precision"

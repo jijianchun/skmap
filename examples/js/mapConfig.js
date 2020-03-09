@@ -1,5 +1,6 @@
 /* --------------------------------地图初始信息配置-------------------------------- */
 
+var BASE_URL = 'https://kfront.kedacom.com/mapboxServer';
 /*!
  *三维部分配置文件
  */
@@ -227,7 +228,7 @@ var MapConfig = {
 
     ],
     CTserverConfig: {
-        CT_SERVER_URL: "https://10.68.2.131",
+        CT_SERVER_URL: BASE_URL,
         TOKEN: 'BBF263F1920945C4A282FCD19D53B0C2'
     },
     /**
@@ -236,16 +237,16 @@ var MapConfig = {
      */
     WS_SERVERS: {
         // WebSocket 通道连接地址
-        WS_SERVER:'https://10.68.2.131' + '/ws-server/ctserver',
+        WS_SERVER:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/ctserver',
         // 私有空间订阅地址(2.0完成后不支持)
-        SUBSCRIBE_PRIVATE_SERVER:'https://10.68.2.131' + '/ws-server/trace/subscribe',
+        SUBSCRIBE_PRIVATE_SERVER:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/trace/subscribe',
         // 私有空间取消订阅地址(2.0完成后不支持)
-        UNSUBSCRIBE_PRIVATE_SERVER:'https://10.68.2.131' + '/ws-server/trace/unsubscribe',
+        UNSUBSCRIBE_PRIVATE_SERVER:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/trace/unsubscribe',
         // 公有空间订阅地址
-        SUBSCRIBE_PUBLIC_SERVER:'https://10.68.2.131' + '/ws-server/trace/subscribeDevice',
+        SUBSCRIBE_PUBLIC_SERVER:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/trace/subscribeDevice',
         // 公有空间取消订阅地址
-        UNSUBSCRIBE_PUBLIC_SERVER:'https://10.68.2.131' + '/ws-server/trace/unsubscribeDevice',
-        SUBSCRIBE_GPS_DEVICE:'https://10.68.2.131' + '/ws-server/trace/subscribeGpsDevice',
-        UNSUBSCRIBE_GPS_DEVICE:'https://10.68.2.131' + '/ws-server/trace/unsubscribeDevice'
+        UNSUBSCRIBE_PUBLIC_SERVER:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/trace/unsubscribeDevice',
+        SUBSCRIBE_GPS_DEVICE:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/trace/subscribeGpsDevice',
+        UNSUBSCRIBE_GPS_DEVICE:'https://kfront.kedacom.com/mapboxServer' + '/ws-server/trace/unsubscribeDevice'
     },
 }

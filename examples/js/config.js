@@ -1,6 +1,6 @@
 var URL_CONFIG = {
     JS_SH_TERRAIN: 'https://10.68.2.142:9090/jiangsushengandshanghai',  // 江苏上海地形图
-    GOOGLE_IMG: 'http://mt1.google.cn/vt/lyrs=s&hl=zh-CN&x={x}&y={y}&z={z}&s=Gali', // 谷歌中国影像
+    GOOGLE_IMG: 'https://mt1.google.cn/vt/lyrs=s&hl=zh-CN&x={x}&y={y}&z={z}&s=Gali', // 谷歌中国影像
     BING_MAP_KEY: 'AqYgyS1gIIDGsxmOlncqrgA83cHnhClLwZmIJXbYXX36pfxKYtUGk12Q3splaf4Y',   // bing地图key
     BINGMAP : '//dev.virtualearth.net', //bing地图影像
     TDT_IMG : 'https://[subdomain].tianditu.com/img_w/wmts',//天地图影像

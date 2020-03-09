@@ -42,12 +42,30 @@ function onload(Cesium) {
 
     // 实例化kmap
     let kmap = new KMap3D('cesiumContainer');
+    let viewer = kmap.map.kmapViewer;
+    let scene = viewer.scene;
 
-    kmap.build3DTilesLayer({
-        url: 'https://10.68.2.142:9090/suzhou_kd/models/3dtiles/suzhou1218/tileset.json', index: 0, onload: () => {
-           console.log('加载完成');
-        }
+    var heading = Cesium.Math.toRadians(90.0);
+    var pitch = Cesium.defaultValue(0.0);
+    var roll = Cesium.defaultValue(0.0);
+    var hpr = new Cesium.HeadingPitchRoll(heading, pitch, roll);
+    var origin = Cesium.Cartesian3.fromDegrees(114.0440324376146, 22.55380661402764, 0.0);
+    var modelMatrix = Cesium.Transforms.headingPitchRollToFixedFrame(origin, hpr);
+
+    var model = scene.primitives.add(Cesium.Model.fromGltf({  
+        url : './data/cross/scenenew.gltf',
+        modelMatrix : modelMatrix,  
+        scale : 1     //放大倍数
+    }));     
+    viewer.camera.flyTo({  
+        destination : Cesium.Cartesian3.fromDegrees(114.0440324376146, 22.55380661402764, 500.0)     //相机飞入点
     });
+
+    // kmap.build3DTilesLayer({
+    //     url: 'https://10.68.2.142:9090/suzhou_kd/models/3dtiles/suzhou1218/tileset.json', index: 0, onload: () => {
+    //        console.log('加载完成');
+    //     }
+    // });
 
     $('#loadingbar').remove();
 }
