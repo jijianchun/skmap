@@ -202,7 +202,7 @@ var exampleConfig = {
                     {
                         name: "GaodeMap",
                         name_en: "GaodeMap",
-                        thumbnail: "bingMap.jpg",
+                        thumbnail: "gaodeMap.jpg",
                         fileName: "gaodeMap"
                     },
                     // {
@@ -963,7 +963,7 @@ var exampleConfig = {
                         name_en: "CircleRipple",
                         thumbnail: "circle_ripple.jpg",
                         fileName: "CircleRipple"
-                    }
+                    },
                     // {
                     //     name: "泛光扫描线",
                     //     name_en: "scanLine",
@@ -976,12 +976,24 @@ var exampleConfig = {
                     //     thumbnail: "trailLine.jpg",
                     //     fileName: "airlinesTrailLines"
                     // },
-                    // {
-                    //     name: "动态自发光纹理",
-                    //     name_en: "emissionTexture",
-                    //     thumbnail: "emissionTexture.jpg",
-                    //     fileName: "emissionTexture"
-                    // },
+                    {
+                        name: "动态墙",
+                        name_en: "dynamicWall",
+                        thumbnail: "dynamic_wall.jpg",
+                        fileName: "dynamicWall"
+                    },
+                    {
+                        name: "发光纹理",
+                        name_en: "faguangwenli",
+                        thumbnail: "emissionTexture.jpg",
+                        fileName: "faguang"
+                    },
+                    {
+                        name: "动态自发光纹理",
+                        name_en: "emissionTexture",
+                        thumbnail: "emissionTexture.jpg",
+                        fileName: "emissionTexture"
+                    },
                     // {
                     //     name: "动态图层汽车灯光",
                     //     name_en: "carLamp",

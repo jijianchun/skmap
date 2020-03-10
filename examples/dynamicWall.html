@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>动态墙</title>
+    <link href="./Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="./css/pretty.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/mapConfig.js"></script>
+    <script src="./Cesium/Cesium.js"></script>
+    <script src="./js/KMap3D.js"></script>
+    <script type="text/javascript" src="./js/require.min.js" data-main="js/main"></script>
+    <style>
+        .canvas {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            display:none;
+        }
+        #canvas-a {
+            top: 10px;
+        }
+        #canvas-b {
+            top: 120px;
+        }
+    </style>
+</head>
+<body>
+<div id="cesiumContainer"></div>
+<canvas id="canvas-a" class="canvas" width="200" height="200"></canvas>
+    <canvas id="canvas-b" class="canvas" width="200" height="200"></canvas>
+<div id='loadingbar' class="spinner">
+    <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+    <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+    </div>
+</div>
+<script>
+    function onload() {
+
+        // 初始化kmap
+        let kmap = new KMap3D('cesiumContainer');
+        let viewer = kmap.map.kmapViewer;
+        let scene = viewer.scene;
+
+        // 创建相机初始位置和朝向
+        let initialPosition = new Cesium.Cartesian3.fromDegrees(120.72420910746945, 31.205520498795845, 4000);
+        let initialOrientation = new Cesium.HeadingPitchRoll.fromDegrees(357, -54, 0);
+        let homeCameraView = {
+            destination: initialPosition,
+            orientation: {
+                heading: Cesium.Math.toRadians(333),
+                pitch: Cesium.Math.toRadians(-20),
+                roll: Cesium.defaultValue(0)
+            }
+        };
+        // 设置视图
+        viewer.scene.camera.setView(homeCameraView);
+
+        let redWall = viewer.entities.add({
+            name: 'red wall',
+            wall: {
+                positions: Cesium.Cartesian3.fromDegreesArrayHeights([120.5724365855491, 31.278603609272835, 300,
+                    120.5724365855491, 31.3267363272156, 300,
+                    120.66034305859574, 31.3267363272156, 300,
+                    120.66034305859574, 31.278603609272835, 300,
+                    120.5724365855491, 31.278603609272835, 300]),
+                material: new Cesium.ImageMaterialProperty({
+                    image: new Cesium.CallbackProperty(drawCanvasImage, false),
+                    transparent: true,
+                    repeat: new Cesium.Cartesian2(30, 1)
+                })
+            }
+        });
+
+        
+        let i = 0;
+        let curCanvas = 'a';
+        function drawCanvasImage(time, result) {
+            var canvas = document.getElementById("canvas-" + curCanvas);
+            let cwidth = 200;
+            let cheight = 200;
+            let imgWidth = 200;
+            let imgHeight = 200;
+            var ctx = canvas.getContext("2d");
+            var img = new Image();
+            img.src = "./images/arrow.png";
+            img.onload = function() {
+                if(i <= imgWidth){
+                    ctx.clearRect(0, 0, cwidth, cheight);
+                    ctx.drawImage(img, i, 0, imgWidth, imgHeight);
+                    ctx.drawImage(img, i - imgWidth, 0, imgWidth, imgHeight);
+                } else {
+                    i = 0;
+                    ctx.clearRect(0, 0, cwidth, cheight);
+                    ctx.drawImage(img, i, 0, imgWidth, imgHeight);
+                }
+                i += 5;
+            }
+            curCanvas = curCanvas === 'a' ? 'b' : 'a';
+            return canvas;
+        }
+        
+
+        $('#loadingbar').remove();
+    }
+</script>
+</body>
+</html>
